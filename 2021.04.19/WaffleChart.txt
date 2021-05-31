@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import numpy as np
+
+# customize matplotlib settings
+mpl.rcParams['axes.edgecolor'] = "#FFFFFF"
+mpl.rcParams['xtick.color'] = "#FFFFFF"
+mpl.rcParams['ytick.color'] = "#FFFFFF"
+mpl.rcParams['figure.facecolor'] = "#FFFFFF"
+mpl.rcParams['text.color'] = "#808080"
+mpl.rcParams['font.sans-serif'] = 'Lato'
+
+# plt the chart (there will be 8 waffle charts)
+fig, axes = plt.subplots(nrows=2, ncols=4,figsize=(12,6))
+
+# create a 10x10 matrix for Poland (18% of the country population is 65+) 
+data = np.ones((10,10))
+data[9,0:10:1] = 0
+data[8,0:8:1] = 0
+# plt the first waffle chart for Poland
+axes[0,0].set_title("Poland", size=15, color='#383428', weight="bold")
+axes[0,0].matshow(data,cmap='tab20c', vmin=0,vmax=1)
+axes[0,0].set_xticks(np.arange(-.5, (10), 1), minor=True)
+axes[0,0].set_yticks(np.arange(-.5, (10), 1), minor=True)
+axes[0,0].grid(which='minor', color='w', linestyle='-', linewidth=2)
+axes[0,0].set_xticks([])
+axes[0,0].set_yticks([])
+
+# TODO: based on the code above create the waffle chart for the Poland's seven country neighbours 
+# TODO*: you could shorted the code by creating a method -> waffle_chart(par1, par2, etc.) 
+
+# TODO: add percentages in front of each waffle chart -> plt.figtext() 
+
+# TODO: add a title -> plt.title()
+
+plt.show()
+
+# data source: prb.org/countries-with-the-oldest-populations/

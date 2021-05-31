@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import pandas as pd
+from math import pi
+import numpy as np
+ 
+# 1. create a table with data
+GUI_1 = {'effectiveness': [8],'efficiency': [8],'user satisfaction': [7],'memorability': [9],
+         'learnability': [9],'error handling': [8]}
+table = pd.DataFrame(data=[GUI_1])
+
+# 2. create a list of categories
+categories=list(table)[0:]
+N = len(categories)
+ 
+# 3. create a list of values (values[:1] -> character from the beginning to position 1 (excluded))
+values=table.loc[0].values.flatten().tolist()
+values = values + values[:1]
+ 
+# 4. create a list of angles
+angles = [n*2*pi/N for n in range(N)]
+angles += angles[:1]
+   
+# 5. plot the data using the polar coordinate system
+plt.figure(figsize=(5,5))
+ax = plt.subplot(111, polar=True)
+# clockwise direction
+# TODO: change the value of theta_offset to check what it does  
+ax.set_theta_direction(-1)
+ax.set_theta_offset(np.deg2rad(90))
+ax.plot(angles, values, color='tab:blue', linewidth=2)
+ax.fill(angles, values, 'tab:blue', alpha=0.2)
+# TODO: change the value of rlabel_position to check what it does
+ax.set_rlabel_position(90)
+plt.xticks(angles[:-1], categories, color='#383428', size=15)
+plt.yticks([2,4,6,8,10], ["2","4","6","8","10"], color='#606060', size=15, alpha=1, va = 'baseline')
+plt.ylim(0, 10)
+# nicely locate the category names 
+for label, angle in zip(ax.get_xticklabels(), angles):
+    if angle in (0, np.pi):
+        label.set_horizontalalignment('center')
+    elif 0 < angle < np.pi:
+        label.set_horizontalalignment('left')
+    else:
+        label.set_horizontalalignment('right')
+plt.show()

@@ -1,0 +1,39 @@
+import matplotlib.pyplot as plt
+from matplotlib_venn import venn3,venn3_circles
+import matplotlib
+ 
+# TODO: set the font to Lato, its size to 20, and its color to white 
+# matplotlib.org/stable/tutorials/introductory/customizing.html
+
+plt.figure(figsize=(15,15))
+
+v=venn3(subsets = (10,10,2,10,2,2,2))
+
+# setting for the red segment of the top-left circle
+v.get_patch_by_id('100').set_color('#EE2124')
+v.get_patch_by_id('100').set_alpha(1)
+v.get_label_by_id('100').set_x(-0.59)
+v.get_label_by_id('100').set_y(0.15)
+v.get_label_by_id('100').set_ha('left')
+v.get_label_by_id('100').set_text('\n \n proper collection & \n organization of data \n with a purpose')
+
+# TODO: finish the code to get the Venn chart shown in Figure 2
+# in the code above '100' corresponds to the red segment of the top-left circle,
+# '010' - top-right segment of the green circle,'001' - blue segment of the bottom circle,
+# '111' - intersection of the three circles, etc.
+
+# RGB codes & text:
+# green - '#6BBE45' ('accurate, simple \n & attractive \n representation of data') 
+# blue - '#3955A7' ('impactful & interesting \n visuals with balanced \n form & function')
+# yellow - '#F7ED14' ('Rigid & \n Complex')
+# cyan - '#70CDDE' ('Lack of \n Complexity')
+# magenda - '#C97BB5'('Beautiful \n but Illegible')
+# white - #FFFFFF()'A Good Data \n Visualization'
+
+# TODO: add a title (What Makes a Good DATA VISUALIZATION)
+
+plt.text(-0.57,0.2,"DATA" , weight = 'bold', color = "#FFFFFF", size=35)
+plt.text(0.27,0.2,"FUNCTION" , weight = 'bold', color = "#FFFFFF", size=35)
+plt.text(-0.1,-0.4,"DESIGN" , weight = 'bold', color = "#FFFFFF", size=35)
+
+plt.show()
